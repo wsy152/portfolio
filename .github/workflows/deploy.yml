@@ -1,0 +1,76 @@
+name: Deploy to GitHub Pages
+
+# 推送到 main 分支时自动构建并发布
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 只有一个部署任务，避免并发冲突
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Compute BASE_PATH
+        id: base
+        # User Pages（<用户名>.github.io）部署在根路径，base 就是 '/'
+        # Project Pages（<用户名>.github.io/<仓库名>/）需要 '/<仓库名>/'
+        run: |
+          REPO="${GITHUB_REPOSITORY#*/}"
+          OWNER="${GITHUB_REPOSITORY%%/*}"
+          if [ "$REPO" = "$OWNER.github.io" ]; then
+            echo "base=/" >> "$GITHUB_OUTPUT"
+          else
+            echo "base=/$REPO/" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build
+        env:
+          GH_PAGES_BASE: ${{ steps.base.outputs.base }}
+          SITE_URL: https://${{ github.repository_owner }}.github.io${{ steps.base.outputs.base }}
+          # Pages 是预览环境，暂不做 SITE_URL 强校验；拿到真实域名后可去掉
+          PASS_SITE_URL_CHECK: '1'
+        run: npm run build
+
+      - name: Copy 404 fallback
+        run: cp dist/index.html dist/404.html
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

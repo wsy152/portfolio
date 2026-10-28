@@ -1,0 +1,16 @@
+.wrapper {
+  padding: var(--space-6) 0 var(--space-8);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 1024px) {
+  .columns {
+    grid-template-columns: minmax(0, 1fr) 200px;
+    gap: var(--space-7);
+  }
+}

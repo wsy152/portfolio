@@ -1,0 +1,81 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--header-h);
+  background: transparent;
+  transition:
+    background-color var(--dur-base) var(--ease),
+    border-color var(--dur-base) var(--ease);
+  border-bottom: 1px solid transparent;
+}
+
+/* 滚动超过 120px：1px 下边框 + 88% 不透明白底 */
+.scrolled {
+  background: rgba(255, 255, 255, 0.88);
+  border-bottom-color: var(--line);
+}
+
+.inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-size: 16px;
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.navLink {
+  font-size: 14px;
+  color: var(--ink-2);
+  padding: var(--space-1) 0;
+  border-bottom: 2px solid transparent;
+}
+
+.navLink:hover {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+/* 当前项：加粗 + 2px 下划线（字重区分，不只靠颜色） */
+.active {
+  color: var(--ink);
+  font-weight: 650;
+  border-bottom-color: var(--accent);
+}
+
+.menuButton {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--ink);
+}
+
+@media (max-width: 1023px) {
+  .nav {
+    display: none;
+  }
+
+  .menuButton {
+    display: inline-flex;
+  }
+}

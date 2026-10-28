@@ -1,0 +1,234 @@
+/* 全局样式：reset、排版、焦点环、跳转链接、区块进场动效 */
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family:
+    system-ui,
+    -apple-system,
+    'PingFang SC',
+    'Hiragino Sans GB',
+    'Microsoft YaHei',
+    'Segoe UI',
+    Inter,
+    sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  line-height: 1.3;
+  font-weight: 650;
+}
+
+p {
+  margin: 0 0 var(--space-3);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* 焦点环：所有交互元素统一 2px 强调色外描边，不使用 outline: none */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* 跳到主要内容 */
+.skipLink {
+  position: fixed;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 100;
+  padding: var(--space-1) var(--space-3);
+  background: var(--ink);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  transform: translateY(-200%);
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.skipLink:focus-visible {
+  transform: translateY(0);
+  text-decoration: none;
+}
+
+/* 仅读屏可见 */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 通用容器 */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+/* 区块间距：桌面 96px、移动 56px */
+.section {
+  padding: var(--space-8) 0;
+}
+
+@media (max-width: 639px) {
+  .section {
+    padding: 56px 0;
+  }
+}
+
+.sectionTitle {
+  font-size: 21px;
+  line-height: 1.4;
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+
+/* 区块进场：淡入并上移 8px，仅一次 */
+@keyframes sectionIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sectionIn {
+  animation: sectionIn var(--dur-base) var(--ease) both;
+}
+
+/* 主按钮 / 次按钮 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  height: 40px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  transition:
+    filter var(--dur-fast) var(--ease),
+    background-color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+
+.btn:active {
+  transform: scale(0.99);
+}
+
+@media (max-width: 639px) {
+  .btn {
+    height: 44px;
+  }
+}
+
+.btnPrimary {
+  background: var(--ink);
+  color: #fff;
+}
+
+.btnPrimary:hover {
+  filter: brightness(0.94);
+  text-decoration: none;
+}
+
+.btnPrimary[aria-disabled='true'] {
+  background: var(--muted);
+  cursor: not-allowed;
+  filter: none;
+}
+
+.btnSecondary {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+
+.btnSecondary:hover {
+  background: var(--bg-soft);
+  text-decoration: none;
+}
+
+/* 标签 chip */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  background: var(--bg-soft);
+  color: var(--ink-2);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* 所有动效在 prefers-reduced-motion 下降级为瞬时切换 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,30 @@
+.toc {
+  position: sticky;
+  top: calc(var(--header-h) + var(--space-4));
+  font-size: 13px;
+  border-left: 1px solid var(--line);
+  padding-left: var(--space-3);
+}
+
+.title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: var(--space-2);
+}
+
+.item {
+  display: block;
+  color: var(--ink-2);
+  padding: 4px 0;
+  line-height: 1.5;
+}
+
+.item:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.depth3 {
+  padding-left: var(--space-3);
+}

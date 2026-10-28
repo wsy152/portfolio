@@ -1,0 +1,20 @@
+.title {
+  font-size: 30px;
+  margin-bottom: var(--space-2);
+}
+
+.count {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: var(--space-5);
+}
+
+.year {
+  font-size: 20px;
+  font-weight: 600;
+  margin: var(--space-5) 0 var(--space-2);
+}
+
+.yearGroup {
+  border-top: 1px solid var(--line);
+}

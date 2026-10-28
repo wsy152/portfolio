@@ -1,0 +1,46 @@
+.timeline {
+  position: relative;
+  padding-left: var(--space-4);
+  border-left: 1px solid var(--line);
+}
+
+.item {
+  position: relative;
+  padding-bottom: var(--space-5);
+}
+
+.item:last-child {
+  padding-bottom: 0;
+}
+
+/* 节点：6px 圆点；当前经历用强调色 */
+.dot {
+  position: absolute;
+  left: calc(-1 * var(--space-4) - 3px);
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+}
+
+.current .dot {
+  background: var(--accent);
+}
+
+.period {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 2px 0;
+}
+
+.outcome {
+  font-size: 14px;
+  color: var(--ink-2);
+  margin: 0;
+}

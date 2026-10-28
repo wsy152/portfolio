@@ -1,0 +1,109 @@
+.hero {
+  padding: var(--space-8) 0 var(--space-7);
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.heroText {
+  flex: 1;
+}
+
+.role {
+  font-size: 14px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.name {
+  font-size: 48px;
+  line-height: 1.15;
+  font-weight: 650;
+}
+
+.tagline {
+  font-size: 20px;
+  color: var(--ink-2);
+  margin: var(--space-3) 0 var(--space-1);
+}
+
+.location {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: var(--space-4);
+}
+
+.cta {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: var(--radius-full);
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 650;
+  flex-shrink: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  .hero {
+    padding-top: var(--space-6);
+  }
+
+  .name {
+    font-size: 30px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .avatar {
+    width: 88px;
+    height: 88px;
+    font-size: 28px;
+  }
+}
+
+.postList {
+  border-top: 1px solid var(--line);
+}
+
+.contact {
+  background: var(--bg-soft);
+  border-top: 1px solid var(--line);
+  /* sticky 头部会盖住锚点目标，滚动时留出头部高度 */
+  scroll-margin-top: var(--header-h);
+}
+
+.contactInner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.contactText {
+  color: var(--ink-2);
+  max-width: 480px;
+}

@@ -1,0 +1,95 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  color: var(--ink);
+  height: 100%;
+  transition:
+    border-color var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+
+.card:hover {
+  border-color: var(--muted);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* stretched-link：标题链接的伪元素覆盖整卡，点击任意位置进详情 */
+.titleLink {
+  color: var(--ink);
+}
+
+.titleLink:hover {
+  text-decoration: none;
+}
+
+.titleLink::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+}
+
+.titleLink:focus-visible {
+  outline: none;
+}
+
+.titleLink:focus-visible::after {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* 外链位于覆盖层之上，点击不触发详情跳转 */
+.external {
+  position: relative;
+  z-index: 1;
+}
+
+/* 封面缺失：浅灰底 + 标题首字占位，保持 16:9 与卡片等高 */
+.cover {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-sm);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 650;
+  color: var(--muted);
+}
+
+.title {
+  font-size: 17px;
+  line-height: 1.45;
+  font-weight: 600;
+}
+
+.summary {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.meta {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-top: auto;
+}

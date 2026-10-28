@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+# 上线前把下面这行的 example.com 换成你的真实域名
+# Sitemap: https://your-domain.com/sitemap.xml

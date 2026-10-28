@@ -1,0 +1,137 @@
+/* 正文版式：文章与项目正文、代码块、表格。仅浅色主题。 */
+
+.prose {
+  max-width: var(--prose);
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+.prose > * + * {
+  margin-top: var(--space-3);
+}
+
+.prose h2 {
+  font-size: 22px;
+  line-height: 1.4;
+  font-weight: 600;
+  margin-top: var(--space-6);
+  scroll-margin-top: 88px;
+}
+
+.prose h3 {
+  font-size: 17px;
+  line-height: 1.45;
+  font-weight: 600;
+  margin-top: var(--space-5);
+  scroll-margin-top: 88px;
+}
+
+.prose p {
+  margin-bottom: 0;
+  color: var(--ink);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: var(--space-4);
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li + li {
+  margin-top: var(--space-1);
+}
+
+.prose blockquote {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border-left: 2px solid var(--line);
+  background: var(--bg-soft);
+  color: var(--ink-2);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.prose code:not(pre code) {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 1px 6px;
+  font-size: 0.875em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* 代码块：浅灰底 + 1px 描边 + 复制按钮，不使用深色主题 */
+.codeBlock {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+  overflow: hidden;
+}
+
+.codeBlock pre {
+  margin: 0;
+  padding: var(--space-3);
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.6;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: transparent !important;
+}
+
+.codeBlock code {
+  font-family: inherit;
+}
+
+.codeCopy {
+  position: absolute;
+  top: var(--space-1);
+  right: var(--space-1);
+  padding: 4px var(--space-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--ink-2);
+  font-size: 12px;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+
+.codeCopy:hover {
+  background: var(--accent-soft);
+}
+
+/* 表格：窄屏横向滚动，不压缩字号 */
+.prose table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid var(--line);
+  padding: var(--space-1) var(--space-2);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.prose th {
+  background: var(--bg-soft);
+  font-weight: 600;
+}
+
+.prose img {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: var(--space-5) 0;
+}
